@@ -4,6 +4,7 @@
 #include <set>
 #include <numeric>
 #include <map>
+#include "Dictionary.hpp"
 
 using namespace std;
 
@@ -21,6 +22,8 @@ void task_3();
 
 char stringDifference(const string &str1, const string &str2);
 
+void task_4();
+
 int main() {
     cout << "========== Zadanie 1 - Duplikat ==========" << endl;
     task_1();
@@ -32,6 +35,10 @@ int main() {
 
     cout << "========== Zadanie 3 - Roznica ==========" << endl;
     task_3();
+    cout << endl;
+
+    cout << "========== Zadanie 4 - Slownik ==========" << endl;
+    task_4();
     cout << endl;
 }
 
@@ -106,4 +113,22 @@ char stringDifference(const string &str1, const string &str2) {
             return pair.first;
     }
     return 0;
+}
+
+void task_4() {
+    Dictionary dictionary;
+    dictionary.addEntry("slonce", "sun");
+    dictionary.addEntry("ksiezyc", "moon");
+    dictionary.addEntry("ziemia", "dirt");
+    dictionary.addEntry("samochod", "car");
+    dictionary.addEntry("motocykl", "motorcycle");
+    cout << "All entries:" << endl;
+    dictionary.showAllEntries();
+    cout << endl << "All entries after deletion:" << endl;
+    dictionary.deleteEntry("motocykl");
+    dictionary.showAllEntries();
+    cout << endl;
+    dictionary.translate("ziemia");
+    cout << "All entries sorted:" << endl;
+    dictionary.showAllEntriesSortedByValueDescending();
 }
