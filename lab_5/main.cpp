@@ -1,7 +1,9 @@
 #include <iostream>
+#include <random>
 #include <vector>
 #include <set>
 #include <numeric>
+#include <map>
 
 using namespace std;
 
@@ -17,6 +19,8 @@ set<T> exclusiveAlternative(const set<T> &set1, const set<T> &set2, int inWhich)
 
 void task_3();
 
+char stringDifference(const string &str1, const string &str2);
+
 int main() {
     cout << "========== Zadanie 1 - Duplikat ==========" << endl;
     task_1();
@@ -24,7 +28,7 @@ int main() {
 
     cout << "========== Zadanie 2 - Alternatywa wykluczajaca ==========" << endl;
     task_2();
-    cout << endl;
+    cout << endl << endl;
 
     cout << "========== Zadanie 3 - Roznica ==========" << endl;
     task_3();
@@ -80,6 +84,26 @@ set<T> exclusiveAlternative(const set<T> &set1, const set<T> &set2, int inWhich)
     return res;
 }
 
-void task_3() {
 
+void task_3() {
+    string str1 = "aaaaabbbbcccdd";
+    string str2 = "aaaaabbbbcccddd";
+    shuffle(str1.begin(), str1.end(), std::mt19937(std::random_device()()));
+    shuffle(str1.begin(), str1.end(), std::mt19937(std::random_device()()));
+    char excess_char = stringDifference(str1, str2);
+    cout << "Znak: " << excess_char << endl;
+}
+
+char stringDifference(const string &str1, const string &str2) {
+    map<char, int> map1;
+    map<char, int> map2;
+    for (char c: str1)
+        map1[c]++;
+    for (char c: str2)
+        map2[c]++;
+    for (pair<char, int> pair: map2) {
+        if (!map1.contains(pair.first) || map1[pair.first] != pair.second)
+            return pair.first;
+    }
+    return 0;
 }
