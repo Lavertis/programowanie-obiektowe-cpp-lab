@@ -85,8 +85,9 @@ set<T> exclusiveAlternative(const set<T> &set1, const set<T> &set2) {
 void task_3() {
     string str1 = "aaaaabbbbcccdd";
     string str2 = "aaaaabbbbcccddd";
-    shuffle(str1.begin(), str1.end(), std::mt19937(std::random_device()()));
-    shuffle(str1.begin(), str1.end(), std::mt19937(std::random_device()()));
+    std::mt19937 mt((std::random_device()()));
+    shuffle(str1.begin(), str1.end(), mt);
+    shuffle(str2.begin(), str2.end(), mt);
     char excess_char = stringDifference(str1, str2);
     cout << "Znak: " << excess_char << endl;
 }
