@@ -55,9 +55,8 @@ pair<T, int> duplicateAndSum(const vector<T> &vec) {
     T duplicated_value;
 
     for (auto it = vec.begin(); it != vec.end(); ++it) {
-        if (unique_values.contains(*it))
+        if (!unique_values.insert(*it).second)
             duplicated_value = *it;
-        unique_values.insert(*it);
     }
 
     int sum = std::accumulate(unique_values.begin(), unique_values.end(), 0);
@@ -82,7 +81,6 @@ set<T> exclusiveAlternative(const set<T> &set1, const set<T> &set2) {
     set_symmetric_difference(set1.begin(), set1.end(), set2.begin(), set2.end(), insert_iterator(res, res.begin()));
     return res;
 }
-
 
 void task_3() {
     string str1 = "aaaaabbbbcccdd";
