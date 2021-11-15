@@ -16,7 +16,7 @@ pair<T, int> duplicateAndSum(const vector<T> &vec);
 void task_2();
 
 template<typename T>
-set<T> exclusiveAlternative(const set<T> &set1, const set<T> &set2, int inWhich);
+set<T> exclusiveAlternative(const set<T> &set1, const set<T> &set2);
 
 void task_3();
 
@@ -67,7 +67,7 @@ pair<T, int> duplicateAndSum(const vector<T> &vec) {
 void task_2() {
     set<int> set1 = {1, 2, 3, 5, 7, 9};
     set<int> set2 = {1, 2, 3, 4, 6, 8};
-    set<int> set3 = exclusiveAlternative(set1, set2, 1);
+    set<int> set3 = exclusiveAlternative(set1, set2);
     cout << "Set1: ";
     for_each(set1.begin(), set1.end(), [](auto item) { cout << item << " "; });
     cout << endl << "Set2: ";
@@ -77,17 +77,9 @@ void task_2() {
 }
 
 template<typename T>
-set<T> exclusiveAlternative(const set<T> &set1, const set<T> &set2, int inWhich) {
+set<T> exclusiveAlternative(const set<T> &set1, const set<T> &set2) {
     set<T> res;
-    switch (inWhich) {
-        case 1:
-            set_difference(set1.begin(), set1.end(), set2.begin(), set2.end(), insert_iterator(res, res.begin()));
-            break;
-        case 2:
-            set_difference(set2.begin(), set2.end(), set1.begin(), set1.end(), insert_iterator(res, res.begin()));
-            break;
-        default:;
-    }
+    set_symmetric_difference(set1.begin(), set1.end(), set2.begin(), set2.end(), insert_iterator(res, res.begin()));
     return res;
 }
 
@@ -129,6 +121,6 @@ void task_4() {
     dictionary.showAllEntries();
     cout << endl;
     dictionary.translate("ziemia");
-    cout << "All entries sorted:" << endl;
+    cout << endl << "All entries sorted:" << endl;
     dictionary.showAllEntriesSortedByValueDescending();
 }
