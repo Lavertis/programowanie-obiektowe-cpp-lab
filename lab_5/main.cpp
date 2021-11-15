@@ -93,17 +93,14 @@ void task_3() {
 }
 
 char stringDifference(const string &str1, const string &str2) {
-    map<char, int> map1;
-    map<char, int> map2;
+    map<char, int> map;
     for (char c: str1)
-        map1[c]++;
+        map[c]++;
     for (char c: str2)
-        map2[c]++;
-    for (pair<char, int> pair: map2) {
-        if (!map1.contains(pair.first) || map1[pair.first] != pair.second)
-            return pair.first;
-    }
-    return 0;
+        map[c]--;
+
+    auto pair = std::find_if(map.begin(), map.end(), [](auto pair) { return pair.second != 0; });
+    return pair->first;
 }
 
 void task_4() {
