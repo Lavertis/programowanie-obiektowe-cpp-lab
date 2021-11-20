@@ -5,7 +5,7 @@
 #include <boost/multi_index/ordered_index.hpp>
 #include <boost/multi_index/random_access_index.hpp>
 #include <iostream>
-#include "Person.h"
+#include "Person.hpp"
 
 using namespace boost::multi_index;
 using namespace std;
