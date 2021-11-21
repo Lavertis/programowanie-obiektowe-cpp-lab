@@ -1,9 +1,67 @@
+#include <numeric>
 #include "task_2/Contacts.hpp"
 
 void task_2();
 
+template<typename T>
+void statistics(std::vector<T> vec);
+
+template<typename T>
+bool between(T x, T a, T b);
+
 int main() {
+    std::cout << "========== Zadanie 2 - Ksiazka teleadresowa ==========" << std::endl;
     task_2();
+    std::cout << "========== Zadanie 3 - Statystyka ==========" << std::endl;
+    std::vector vec = {-6, -5, -4, -3, -2, 0, 2, 5, 8, 12, 16};
+    statistics(vec);
+}
+
+template<typename T>
+void statistics(std::vector<T> vec) {
+    std::sort(vec.begin(), vec.end());
+    T sum = std::accumulate(vec.begin(), vec.end(), 0);
+
+    double mean = (double) sum / vec.size();
+    double median = (vec[vec.size() / 2.0] + vec[(vec.size() / 2.0) - 1]) / 2.0;
+
+    std::cout << "Mean: " << mean << std::endl;
+    std::cout << "Median: " << median << std::endl;
+
+    size_t lessThanMeanCount = 0;
+    for (auto num: vec) {
+        auto res = boost::bind<double>(std::less<>(), boost::placeholders::_1, boost::placeholders::_2)(num, mean);
+        if (res)
+            lessThanMeanCount++;
+    }
+    std::cout << "Less than mean count: " << lessThanMeanCount << std::endl;
+
+    size_t betweenMeanAndMedianCount = 0;
+    for (auto num: vec) {
+        auto res = std::bind(between<double>,
+                             std::placeholders::_1, std::placeholders::_2, std::placeholders::_3)(num, mean, median);
+        if (res)
+            betweenMeanAndMedianCount++;
+    }
+    std::cout << "Between mean and median count: " << betweenMeanAndMedianCount << std::endl;
+
+    size_t positiveElementsCount = 0;
+    for (auto num: vec) {
+        auto res = boost::bind(std::greater<T>(), std::placeholders::_1, std::placeholders::_2)(num, 0);
+        if (res)
+            positiveElementsCount++;
+    }
+    std::cout << "Positive elements count: " << positiveElementsCount << std::endl;
+    std::cout << std::endl;
+}
+
+template<typename T>
+bool between(T x, T a, T b) {
+    if (x >= a && x <= b)
+        return true;
+    if (x >= b && x <= a)
+        return true;
+    return false;
 }
 
 void task_2() {
@@ -59,4 +117,5 @@ void task_2() {
     contacts.show();
     auto uniqueSurnamesCount = contacts.uniqueSurnamesCount();
     std::cout << uniqueSurnamesCount << std::endl;
+    std::cout << std::endl;
 }
