@@ -11,7 +11,8 @@ void statistics(std::vector<T> vec);
 template<typename T>
 bool between(T x, T a, T b);
 
-std::map<std::string, size_t> mix(const auto &vec);
+template<typename ... Args>
+std::map<std::string, size_t> mix(const boost::fusion::vector<Args ...> &vec);
 
 int main() {
     std::cout << "========== Zadanie 2 - Ksiazka teleadresowa ==========" << std::endl;
@@ -30,7 +31,8 @@ int main() {
     }
 }
 
-std::map<std::string, size_t> mix(const auto &vec) {
+template<typename ... Args>
+std::map<std::string, size_t> mix(const boost::fusion::vector<Args...> &vec) {
     std::map<std::string, size_t> count_map;
     boost::fusion::for_each(vec, [&count_map](auto item) { count_map[typeid(item).name()]++; });
     return count_map;
