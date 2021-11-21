@@ -1,4 +1,6 @@
 #include <numeric>
+#include <boost/fusion/container.hpp>
+#include <boost/fusion/algorithm.hpp>
 #include "task_2/Contacts.hpp"
 
 void task_2();
@@ -9,12 +11,29 @@ void statistics(std::vector<T> vec);
 template<typename T>
 bool between(T x, T a, T b);
 
+std::map<std::string, size_t> mix(const auto &vec);
+
 int main() {
     std::cout << "========== Zadanie 2 - Ksiazka teleadresowa ==========" << std::endl;
     task_2();
+    std::cout << std::endl;
     std::cout << "========== Zadanie 3 - Statystyka ==========" << std::endl;
     std::vector vec = {-6, -5, -4, -3, -2, 0, 2, 5, 8, 12, 16};
     statistics(vec);
+    std::cout << std::endl;
+    std::cout << "========== Zadanie 4 - Mix ==========" << std::endl;
+    boost::fusion::vector<int, int, int, double, double, float, bool, bool, char, char> fusion_vec
+            {1, 2, 3, 4.5, 5.4, 3.6f, true, false, 'a', 'b'};
+    std::map<std::string, size_t> count_map = mix(fusion_vec);
+    for (const auto &pair: count_map) {
+        std::cout << pair.first << ": " << pair.second << std::endl;
+    }
+}
+
+std::map<std::string, size_t> mix(const auto &vec) {
+    std::map<std::string, size_t> count_map;
+    boost::fusion::for_each(vec, [&count_map](auto item) { count_map[typeid(item).name()]++; });
+    return count_map;
 }
 
 template<typename T>
@@ -52,7 +71,6 @@ void statistics(std::vector<T> vec) {
             positiveElementsCount++;
     }
     std::cout << "Positive elements count: " << positiveElementsCount << std::endl;
-    std::cout << std::endl;
 }
 
 template<typename T>
@@ -117,5 +135,4 @@ void task_2() {
     contacts.show();
     auto uniqueSurnamesCount = contacts.uniqueSurnamesCount();
     std::cout << uniqueSurnamesCount << std::endl;
-    std::cout << std::endl;
 }
