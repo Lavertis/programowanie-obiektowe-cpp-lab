@@ -2,10 +2,13 @@
 #include <vector>
 #include <numeric>
 #include <tuple>
+#include "Car.hpp"
 
 using namespace std;
 
 void task_1();
+
+void task_2();
 
 void task_3();
 
@@ -13,6 +16,11 @@ int main() {
     cout << "========== Zadanie 1 - Algorytmy ==========" << endl;
     task_1();
     cout << endl;
+
+    cout << "========== Zadanie 2 - Samochody ==========" << endl;
+    task_2();
+    cout << endl;
+
     cout << "========== Zadanie 3 - Statystyka ==========" << endl;
     task_3();
 }
@@ -42,10 +50,32 @@ void task_3() {
     cout << "Max length: " << std::get<2>(res) << endl;
 }
 
+void task_2() {
+    std::vector<Car> cars;
+    cars.emplace_back("Honda Civic", 2019, 1.5);
+    cars.emplace_back("Mazda Miata", 1992, 1.6);
+    cars.emplace_back("Cadillac Escalade", 2017, 6.2);
+
+    cout << "Sorted ascending by year:" << endl;
+    sort(cars.begin(), cars.end(), [](const Car &car1, const Car &car2) { return car1.getYear() < car2.getYear(); });
+    for_each(cars.begin(), cars.end(), [idx = 0](const Car &car) mutable {
+        cout << idx++ << " ";
+        car.show();
+    });
+
+    cout << endl << "Sorted descending by engine displacement:" << endl;
+    sort(cars.begin(), cars.end(), [](const Car &car1, const Car &car2) {
+        return car1.getEngineDisplacement() > car2.getEngineDisplacement();
+    });
+    for_each(cars.begin(), cars.end(), [idx = 0](const Car &car) mutable {
+        cout << idx++ << " ";
+        car.show();
+    });
+}
+
 void task_1() {
     std::vector<int> vec = {-33, -4, 5, 77, 22, 44566, 768, 12, 87, 4};
-    size_t idx = 0;
-    std::for_each(vec.begin(), vec.end(), [&idx, size = vec.size()](int elem) {
+    std::for_each(vec.begin(), vec.end(), [idx = 0, size = vec.size()](int elem) mutable {
         cout << elem;
         if (++idx != size)
             cout << " | ";
