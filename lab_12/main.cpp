@@ -10,25 +10,36 @@ void task_1();
 void task_3();
 
 int main() {
-//    task_1();
+    cout << "========== Zadanie 1 - Algorytmy ==========" << endl;
+    task_1();
+    cout << endl;
+    cout << "========== Zadanie 3 - Statystyka ==========" << endl;
     task_3();
 }
 
 void task_3() {
-    std::vector<string> vec = {"aaaaaa, bbb, cccc, ddddddddd, eeeeeeee"};
-    auto func = [](std::vector<string> vec) -> std::tuple<size_t, size_t, string> {
-        auto min_length = std::min_element(vec.begin(), vec.end(), [](string_view str1, string_view str2) {
+    std::vector<string> vec = {"aaaaaa", "bbb", "cccc", "ddddddddd", "eeeeeeee"};
+
+    auto stats = [](std::vector<string> &vec) -> std::tuple<size_t, size_t, string> {
+        size_t min_length = std::min_element(vec.begin(), vec.end(), [](string_view str1, string_view str2) {
             return str1.length() < str2.length();
         })->length();
 
-        auto average_length = std::accumulate(vec.begin(), vec.end(), 0, [](int acc_len, string &ele) {
-            return acc_len + ele.length();
-        });
-        cout << average_length / vec.size() << endl;
+        size_t average_length = std::accumulate(vec.begin(), vec.end(), 0, [](int acc, string &el) {
+            return acc + el.length();
+        }) / vec.size();
 
-        return make_tuple(min_length, 2, "123");
+        string max_length_elem = *std::max_element(vec.begin(), vec.end(), [](string_view str1, string_view str2) {
+            return str1.length() < str2.length();
+        });
+
+        return make_tuple(min_length, average_length, max_length_elem);
     };
-    std::tuple<size_t, size_t, string> res = func(vec);
+
+    std::tuple<size_t, size_t, string> res = stats(vec);
+    cout << "Min length: " << std::get<0>(res) << endl;
+    cout << "Average length: " << std::get<1>(res) << endl;
+    cout << "Max length: " << std::get<2>(res) << endl;
 }
 
 void task_1() {
