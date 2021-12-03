@@ -3,9 +3,8 @@ project(sem5-advanced-cpp)
 
 set(CMAKE_CXX_STANDARD 23)
 
-find_package(Boost)
-
-include_directories(${Boost_INCLUDE_DIRS})
+#find_package(Boost)
+#include_directories(${Boost_INCLUDE_DIRS})
 
 #add_executable(sem5-advanced-cpp lab_1/main.cpp lab_1/task_2/Animal.hpp lab_1/task_2/Animal.cpp lab_1/task_2/Dog.hpp lab_1/task_2/Dog.cpp lab_1/task_2/Cat.hpp lab_1/minimalElement/Cat.cpp)
 #add_executable(sem5-advanced-cpp lab_2/main.cpp lab_2/task_2/Employee.cpp lab_2/task_2/Employee.hpp lab_2/task_2/Developer.cpp lab_2/task_2/Developer.hpp lab_2/minimalElement/TeamLeader.cpp lab_2/task_2/TeamLeader.hpp lab_2/task_3/Buffer.cpp lab_2/task_3/Buffer.hpp lab_2/task_3/MeanBuffer.cpp lab_2/task_3/MeanBuffer.hpp lab_2/task_3/MaxBuffer.cpp lab_2/task_3/MaxBuffer.hpp)
@@ -16,4 +15,5 @@ include_directories(${Boost_INCLUDE_DIRS})
 #add_executable(sem5-advanced-cpp lab_6/example/boost_fusion.cpp)
 #add_executable(sem5-advanced-cpp lab_6/example/boost_bind.cpp)
 #add_executable(sem5-advanced-cpp lab_6/main.cpp lab_6/task_2/Contact.hpp lab_6/task_2/Contacts.hpp lab_6/task_2/Contacts.cpp)
-add_executable(sem5-advanced-cpp lab_12/main.cpp lab_12/Car.cpp lab_12/Car.hpp)
+#add_executable(sem5-advanced-cpp lab_12/main.cpp lab_12/Car.cpp lab_12/Car.hpp)
+add_executable(sem5-advanced-cpp kolokwium_1/mb/main.cpp kolokwium_1/mb/Dziecko.cpp kolokwium_1/mb/Dziecko.h kolokwium_1/mb/Prezent.cpp kolokwium_1/mb/Prezent.h)
