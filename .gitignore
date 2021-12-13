@@ -31,6 +31,10 @@
 *.out
 *.app
 
-#CLion
+# CLion
 .idea
 cmake-build-debug
+
+# Particular Lab files
+/lab_9/k.csv
+/lab_9/m.csv

@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include "task_3/StudentRecords.h"
 
 using namespace std;
 
@@ -8,9 +9,26 @@ void task_1();
 
 void task_2();
 
+void task_3();
+
 int main() {
 //    task_1();
-    task_2();
+//    task_2();
+    task_3();
+}
+
+void task_3() {
+    StudentRecords studentRecords;
+    studentRecords.loadContactsFromFile("../lab_9/dane.csv");
+    StudentRecord studentRecord("Elon", "Musk", 'M', 3, "spacex@spacex.com");
+    studentRecords.add(studentRecord);
+    studentRecords.splitToFilesBySex();
+    studentRecords.sortByMarkAsc();
+    studentRecords.printAllRecords();
+    cout << endl;
+    studentRecords.printRecordsFilteredBySurname("Pies");
+    cout << endl;
+    studentRecords.printFirstNRecords(5);
 }
 
 void task_2() {
