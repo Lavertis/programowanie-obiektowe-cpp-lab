@@ -10,7 +10,8 @@ class StudentRecords {
 private:
     vector<string> column_names_;
     vector<StudentRecord> records_;
-    string recordsFilePath;
+    string recordsFilePath_;
+    vector<StudentRecord>::iterator lastLoadedRecord_;
 
     static std::vector<std::string> tokenize(std::string const &str, char delim = ';');
 

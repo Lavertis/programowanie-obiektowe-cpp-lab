@@ -63,7 +63,6 @@ void task_3() {
                 } catch (StudentRecordException::StudentRecordException &e) {
                     std::cerr << e.what() << endl;
                 }
-
                 break;
             }
             case 3: {

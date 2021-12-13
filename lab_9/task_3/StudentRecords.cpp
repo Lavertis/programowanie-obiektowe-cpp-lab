@@ -13,12 +13,12 @@ std::vector<std::string> StudentRecords::tokenize(std::string const &str, const 
 }
 
 void StudentRecords::loadContactsFromFile(const string &filePath) {
-    recordsFilePath = filePath;
+    recordsFilePath_ = filePath;
     ifstream file;
     file.exceptions(std::ifstream::failbit);
 
     try {
-        file.open(recordsFilePath);
+        file.open(recordsFilePath_);
         string line;
         getline(file, line);
         column_names_ = tokenize(line, ';');
@@ -31,6 +31,7 @@ void StudentRecords::loadContactsFromFile(const string &filePath) {
             else
                 records_.emplace_back(res[0], res[1], res[2][0], stoi(res[3]), "");
         }
+        lastLoadedRecord_ = records_.end() - 1;
 
         file.close();
     } catch (std::ifstream::failure &e) {
@@ -148,10 +149,9 @@ StudentRecords::~StudentRecords() {
     ofstream file;
     file.exceptions(std::ifstream::failbit);
     try {
-        file.open("../lab_9/dane.csv");
-        file << serializeColumns() << endl;
-        for (const StudentRecord &sr: records_)
-            file << sr.serializeToCSV() << endl;
+        file.open(recordsFilePath_, ios::app);
+        for (auto it = lastLoadedRecord_ + 1; it != records_.end(); ++it)
+            file << it->serializeToCSV() << endl;
         file.close();
     }
     catch (std::fstream::failure &e) {
