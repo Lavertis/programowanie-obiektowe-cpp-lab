@@ -13,10 +13,12 @@ std::vector<std::string> StudentRecords::tokenize(std::string const &str, const 
 }
 
 void StudentRecords::loadContactsFromFile(const string &filePath) {
+    recordsFilePath = filePath;
     ifstream file;
     file.exceptions(std::ifstream::failbit);
+
     try {
-        file.open(filePath);
+        file.open(recordsFilePath);
         string line;
         getline(file, line);
         column_names_ = tokenize(line, ';');
@@ -125,13 +127,21 @@ void StudentRecords::sortByMarkAsc() {
 }
 
 void StudentRecords::printFirstNRecords(const int n) const {
-    if (n > records_.size()) {
-        printAllRecords();
-    } else {
-        vector<StudentRecord> vec;
-        std::copy(records_.begin(), records_.begin() + n, back_inserter(vec));
-        printTableWithoutBorders(vec);
-    }
+    if (n > records_.size() || n < 1)
+        throw StudentRecordsException::WrongNumberOfRecordsToDisplay();
+    vector<StudentRecord> vec;
+    std::copy(records_.begin(), records_.begin() + n, back_inserter(vec));
+    printTableWithoutBorders(vec);
+}
+
+string StudentRecords::serializeColumns() const {
+    stringstream columns;
+    columns << column_names_[0] << ';'
+            << column_names_[1] << ';'
+            << column_names_[2] << ';'
+            << column_names_[3] << ';'
+            << column_names_[4];
+    return columns.str();
 }
 
 StudentRecords::~StudentRecords() {
@@ -147,14 +157,4 @@ StudentRecords::~StudentRecords() {
     catch (std::fstream::failure &e) {
         std::cerr << "Blad w dopisywaniu do pliku po zakonczeniu programu" << endl;
     }
-}
-
-string StudentRecords::serializeColumns() const {
-    stringstream columns;
-    columns << column_names_[0] << ';'
-            << column_names_[1] << ';'
-            << column_names_[2] << ';'
-            << column_names_[3] << ';'
-            << column_names_[4];
-    return columns.str();
 }

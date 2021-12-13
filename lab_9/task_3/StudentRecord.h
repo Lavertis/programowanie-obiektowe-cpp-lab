@@ -33,31 +33,34 @@ public:
 };
 
 namespace StudentRecordException {
-    struct Name : public std::exception {
+    struct StudentRecordException : public std::exception {
+    };
+
+    struct Name : public StudentRecordException {
         [[nodiscard]] const char *what() const noexcept override {
             return "Wrong name format";
         }
     };
 
-    struct Surname : public std::exception {
+    struct Surname : public StudentRecordException {
         [[nodiscard]] const char *what() const noexcept override {
             return "Wrong surname format";
         }
     };
 
-    struct Sex : public std::exception {
+    struct Sex : public StudentRecordException {
         [[nodiscard]] const char *what() const noexcept override {
             return "Wrong sex format";
         }
     };
 
-    struct Mark : public std::exception {
+    struct Mark : public StudentRecordException {
         [[nodiscard]] const char *what() const noexcept override {
             return "Wrong mark format";
         }
     };
 
-    struct Email : public std::exception {
+    struct Email : public StudentRecordException {
         [[nodiscard]] const char *what() const noexcept override {
             return "Wrong email format";
         }

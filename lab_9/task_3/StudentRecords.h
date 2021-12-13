@@ -10,6 +10,7 @@ class StudentRecords {
 private:
     vector<string> column_names_;
     vector<StudentRecord> records_;
+    string recordsFilePath;
 
     static std::vector<std::string> tokenize(std::string const &str, char delim = ';');
 
@@ -36,3 +37,11 @@ public:
 
     ~StudentRecords();
 };
+
+namespace StudentRecordsException {
+    struct WrongNumberOfRecordsToDisplay : public std::exception {
+        [[nodiscard]] const char *what() const noexcept override {
+            return "Wrong number of records to display";
+        }
+    };
+}

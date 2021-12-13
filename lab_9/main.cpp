@@ -19,16 +19,89 @@ int main() {
 
 void task_3() {
     StudentRecords studentRecords;
-    studentRecords.loadContactsFromFile("../lab_9/dane.csv");
-    StudentRecord studentRecord("Elon", "Musk", 'M', 3, "spacex@spacex.com");
-    studentRecords.add(studentRecord);
-    studentRecords.splitToFilesBySex();
-    studentRecords.sortByMarkAsc();
-    studentRecords.printAllRecords();
-    cout << endl;
-    studentRecords.printRecordsFilteredBySurname("Pies");
-    cout << endl;
-    studentRecords.printFirstNRecords(5);
+    cout << "Podaj sciezke do pliku:" << endl;
+    string path = "../lab_9/dane.csv";
+//    cin >> path;
+    studentRecords.loadContactsFromFile(path);
+    cout << "Pomyslnie zaladowano plik" << endl;
+
+    bool loop = true;
+    while (loop) {
+        cout << "1 - Wyswietl ksiazke adresowa w postaci tabelki" << endl
+             << "2 - Zapisz nowa osobe do ksiazki adresowej" << endl
+             << "3 - Wyswietl osoby o podanym nazwisku" << endl
+             << "4 - Zapisz kobiety i mezczyzn do oddzielnych plikow" << endl
+             << "5 - wyswietl X pierwszych studentow" << endl
+             << "6 - posortuj studentow rosnaco wzgledem oceny" << endl
+             << "0 - Wyjscie" << endl;
+        int choice;
+        cin >> choice;
+        switch (choice) {
+            case 1:
+                studentRecords.printAllRecords();
+                break;
+            case 2: {
+                string name, surname, email;
+                char sex;
+                int mark;
+                cout << "Podaj imie:" << endl;
+                cin >> name;
+                cout << "Podaj nazwisko:" << endl;
+                cin >> surname;
+                cout << "Podaj plec (litera M lub K):" << endl;
+                cin >> sex;
+                cout << "Podaj ocene:" << endl;
+                cin >> mark;
+                cout << "Podaj adres email (opcjonalnie):" << endl;
+                cin.ignore();
+                getline(cin, email);
+
+                StudentRecord sr = StudentRecord(name, surname, sex, mark, email);
+                try {
+                    studentRecords.add(sr);
+                    cout << "Pomyslnie dodano nowego studenta" << endl;
+                } catch (StudentRecordException::StudentRecordException &e) {
+                    std::cerr << e.what() << endl;
+                }
+
+                break;
+            }
+            case 3: {
+                cout << "Podaj nazwisko, ktore chcesz wyszukac:" << endl;
+                string surname;
+                cin >> surname;
+                studentRecords.printRecordsFilteredBySurname(surname);
+                break;
+            }
+            case 4:
+                studentRecords.splitToFilesBySex();
+                break;
+            case 5: {
+                while (true) {
+                    cout << "Podaj liczbe wierszy do wyswietlenia:" << endl;
+                    int rows;
+                    cin >> rows;
+                    try {
+                        studentRecords.printFirstNRecords(rows);
+                        break;
+                    } catch (StudentRecordsException::WrongNumberOfRecordsToDisplay &e) {
+                        std::cerr << e.what() << endl;
+                    }
+                }
+                break;
+            }
+            case 6:
+                studentRecords.sortByMarkAsc();
+                cout << "Studenci zostali posortowani" << endl;
+                break;
+            case 0:
+                loop = false;
+                break;
+            default:
+                cout << "Bledny wybor" << endl;
+                break;
+        }
+    }
 }
 
 void task_2() {
