@@ -6,8 +6,41 @@ using namespace std;
 
 void task_1();
 
+void task_2();
+
 int main() {
-    task_1();
+//    task_1();
+    task_2();
+}
+
+void task_2() {
+    int sum = 0;
+    string input;
+    int successful_attempts = 0;
+    int unsuccessful_attempts = 0;
+
+    while (sum != 21) {
+        cout << "Podaj liczbe:" << endl;
+        cin >> input;
+        try {
+            int num = stoi(input);
+            if (num < 1)
+                throw invalid_argument("Negative number");
+            if (sum + num > 21)
+                throw runtime_error("Sum greater than 21");
+            sum += num;
+            cout << "Suma: " << sum << endl;
+            successful_attempts++;
+        } catch (std::invalid_argument &) {
+            cerr << "Wprowadzono nieprawidlowa wartosc" << endl;
+        } catch (std::runtime_error &) {
+            cerr << "Suma przekroczyla wartosc 21" << endl;
+            unsuccessful_attempts++;
+        }
+    }
+    cout << endl << "Wygrales!" << endl;
+    cout << "Udane proby: " << successful_attempts << endl;
+    cout << "Nieudane proby: " << unsuccessful_attempts << endl;
 }
 
 void task_1() {
