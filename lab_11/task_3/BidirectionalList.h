@@ -3,11 +3,10 @@
 #include <memory>
 
 template<typename T>
-class Node {
-public:
+struct Node {
     T value;
-    std::shared_ptr<Node> next = std::shared_ptr<Node>();
-    std::weak_ptr<Node> prev = std::weak_ptr<Node>();
+    std::shared_ptr<Node> next;
+    std::weak_ptr<Node> prev;
 
     Node() = default;
 
