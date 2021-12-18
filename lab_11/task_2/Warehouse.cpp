@@ -27,3 +27,7 @@ int Warehouse::getStock() const {
 void Warehouse::setStock(int stock) {
     stock_ = stock;
 }
+
+Warehouse::~Warehouse() {
+    std::cout << "Warehouse destructor" << std::endl;
+}

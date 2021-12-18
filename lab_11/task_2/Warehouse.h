@@ -20,4 +20,6 @@ public:
     [[nodiscard]] int getStock() const;
 
     void setStock(int stock);
+
+    virtual ~Warehouse();
 };

@@ -15,12 +15,12 @@ void task_2();
 void task_3();
 
 int main() {
-//    std::cout << "Zadanie 1 - Bufor" << std::endl;
-//    task_1();
-//    std::cout << std::endl;
-//    std::cout << "Zadanie 2 - Sklepy" << std::endl;
-//    task_2();
-//    std::cout << std::endl;
+    std::cout << "Zadanie 1 - Bufor" << std::endl;
+    task_1();
+    std::cout << std::endl;
+    std::cout << "Zadanie 2 - Sklepy" << std::endl;
+    task_2();
+    std::cout << std::endl;
     std::cout << "Zadanie 3 - Lista dwukierunkowa" << std::endl;
     task_3();
 }

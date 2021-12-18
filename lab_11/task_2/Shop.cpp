@@ -26,3 +26,7 @@ bool Shop::sellStock(const std::string &stockName, int count) {
 const std::string &Shop::getName() const {
     return name_;
 }
+
+Shop::~Shop() {
+    std::cout << "Shop destructor" << std::endl;
+}
