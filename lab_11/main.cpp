@@ -4,6 +4,7 @@
 #include "task_1/BufferFile.h"
 #include "task_2/Warehouse.h"
 #include "task_2/Shop.h"
+#include "task_3/BidirectionalList.h"
 #include <vector>
 #include <random>
 
@@ -11,12 +12,30 @@ void task_1();
 
 void task_2();
 
+void task_3();
+
 int main() {
 //    std::cout << "Zadanie 1 - Bufor" << std::endl;
 //    task_1();
-    std::cout << std::endl << "Zadanie 2 - Sklepy" << std::endl;
-    task_2();
-//    std::cout << std::endl << "Zadanie 3 - Lista dwukierunkowa" << std::endl;
+//    std::cout << std::endl;
+//    std::cout << "Zadanie 2 - Sklepy" << std::endl;
+//    task_2();
+//    std::cout << std::endl;
+    std::cout << "Zadanie 3 - Lista dwukierunkowa" << std::endl;
+    task_3();
+}
+
+void task_3() {
+    BidirectionalList<int> bidirectionalList;
+    bidirectionalList.pushFront(1);
+    bidirectionalList.pushFront(2);
+    bidirectionalList.pushBack(3);
+    bidirectionalList.pushBack(4);
+    bidirectionalList.print();
+    bidirectionalList.popBack();
+    bidirectionalList.popFront();
+    bidirectionalList.popBack();
+    bidirectionalList.print();
 }
 
 void task_2() {
