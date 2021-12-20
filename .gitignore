@@ -36,5 +36,5 @@
 cmake-build-debug
 
 # Particular Lab files
-/lab_9/k.csv
-/lab_9/m.csv
+/lab_9/task_3/*.csv
+/lab_11/task_1/*.txt

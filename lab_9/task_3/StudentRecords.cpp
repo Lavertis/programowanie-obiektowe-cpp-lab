@@ -98,8 +98,8 @@ void StudentRecords::splitToFilesBySex() const {
     fileK.exceptions(std::ifstream::failbit);
     fileM.exceptions(std::ifstream::failbit);
     try {
-        fileK.open("../lab_9/k.csv");
-        fileM.open("../lab_9/m.csv");
+        fileK.open("../lab_9/task_3/k.csv");
+        fileM.open("../lab_9/task_3/m.csv");
         string columns = serializeColumns();
         fileK << columns << endl;
         fileM << columns << endl;
