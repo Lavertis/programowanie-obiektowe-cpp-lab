@@ -11,9 +11,8 @@ private:
     static std::regex postal_code_pattern;
     static std::regex house_number_pattern;
     static std::regex flat_number_pattern;
-
 public:
-    AddressValidator();
+    AddressValidator() = delete;
 
     static bool validateStreet(const string &street);
 
@@ -23,4 +22,5 @@ public:
 
     static bool validateFlatNumber(const string &flatNumber);
 };
+
 

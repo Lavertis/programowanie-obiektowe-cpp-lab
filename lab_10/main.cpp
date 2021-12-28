@@ -17,10 +17,10 @@ int main() {
 }
 
 void task_3() {
-    cout << AddressValidator::validateStreet("") << endl;
-    cout << AddressValidator::validateStreet("") << endl;
-    cout << AddressValidator::validateStreet("") << endl;
-    cout << AddressValidator::validateStreet("") << endl;
+    cout << AddressValidator::validateStreet("Zlota") << endl;
+    cout << AddressValidator::validatePostalCode("00-120") << endl;
+    cout << AddressValidator::validateHouseNumber("1A") << endl;
+    cout << AddressValidator::validateFlatNumber("200") << endl;
 }
 
 void task_2() {
