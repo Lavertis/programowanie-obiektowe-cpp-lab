@@ -6,6 +6,8 @@ set(CMAKE_CXX_STANDARD 23)
 #find_package(Boost)
 #include_directories(${Boost_INCLUDE_DIRS})
 
+add_subdirectory(lab_13/tests)
+
 add_executable(lab_01 lab_1/main.cpp lab_1/task_2/Animal.hpp lab_1/task_2/Animal.cpp lab_1/task_2/Dog.hpp lab_1/task_2/Dog.cpp lab_1/task_2/Cat.hpp lab_1/task_2/Cat.cpp)
 add_executable(lab_02 lab_2/main.cpp lab_2/task_2/Employee.cpp lab_2/task_2/Employee.hpp lab_2/task_2/Developer.cpp lab_2/task_2/Developer.hpp lab_2/task_2/TeamLeader.cpp lab_2/task_2/TeamLeader.hpp lab_2/task_3/Buffer.cpp lab_2/task_3/Buffer.hpp lab_2/task_3/MeanBuffer.cpp lab_2/task_3/MeanBuffer.hpp lab_2/task_3/MaxBuffer.cpp lab_2/task_3/MaxBuffer.hpp)
 add_executable(lab_03 lab_3/main.cpp lab_3/task_3.hpp lab_3/task_1/Adding.hpp lab_3/task_1/Student.hpp)
@@ -20,4 +22,3 @@ add_executable(kolokwium_1 kolokwium_1/mb/main.cpp kolokwium_1/mb/Dziecko.cpp ko
 add_executable(lab_09 lab_9/main.cpp lab_9/task_3/StudentRecord.cpp lab_9/task_3/StudentRecord.h lab_9/task_3/StudentRecords.cpp lab_9/task_3/StudentRecords.h)
 add_executable(lab_10 lab_10/main.cpp lab_10/task_3/AddressValidator.cpp lab_10/task_3/AddressValidator.h lab_10/task_4/CardIndexValidator.cpp lab_10/task_4/CardIndexValidator.h lab_10/task_5/User.cpp lab_10/task_5/User.h)
 add_executable(lab_11 lab_11/main.cpp lab_11/task_1/Buffer.cpp lab_11/task_1/Buffer.h lab_11/task_1/BufferArr.cpp lab_11/task_1/BufferArr.h lab_11/task_1/BufferFile.cpp lab_11/task_1/BufferFile.h lab_11/task_2/Warehouse.cpp lab_11/task_2/Warehouse.h lab_11/task_2/Shop.cpp lab_11/task_2/Shop.h lab_11/task_3/BidirectionalList.h)
-add_executable(lab_13 lab_13/main.cpp)
