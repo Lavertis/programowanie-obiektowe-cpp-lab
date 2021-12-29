@@ -3,6 +3,7 @@
 #include <fstream>
 #include "task_3/AddressValidator.h"
 #include "task_4/CardIndexValidator.h"
+#include "task_5/User.h"
 
 using namespace std;
 
@@ -14,11 +15,71 @@ void task_3();
 
 void task_4();
 
+void task_5();
+
+std::vector<string> tokenize(std::string const &str, char delim);
+
 int main() {
 //    task_1();
 //    task_2();
 //    task_3();
-    task_4();
+//    task_4();
+    task_5();
+}
+
+std::vector<string> tokenize(std::string const &str, const char delim) {
+    std::vector<string> tokens;
+    std::stringstream ss(str);
+    std::string s;
+    while (std::getline(ss, s, delim))
+        tokens.push_back(s);
+    return tokens;
+}
+
+void task_5() {
+    ifstream file;
+    file.open("../lab_10/users.csv");
+    vector<User> users;
+    string line;
+
+    while (file.peek() != -1) {
+        getline(file, line);
+        vector<string> res = tokenize(line, ';');
+        users.emplace_back(res[0], res[1], res[2], res[3], res[4]);
+    }
+
+    map<string, int> domains;
+    int phoneNumbersWithEvenLastDigit = 0;
+    int combinedLastNames = 0;
+    map<string, int> names;
+    for (const User &user: users) {
+        smatch res;
+        regex pattern("(@)(.*)");
+        regex_search(user.getEmail(), res, pattern);
+        domains[res[2]]++;
+
+        pattern = "([1-9][0-9]{7})([02468])";
+        regex_search(user.getPhoneNumber(), res, pattern);
+        if (res[2] != "")
+            phoneNumbersWithEvenLastDigit++;
+
+        pattern = "(-)(.*)";
+        regex_search(user.getLastName(), res, pattern);
+        if (res[1] == '-')
+            combinedLastNames++;
+
+        names[user.getFirstName()]++;
+    }
+    cout << "Unikatowe domeny: " << std::count_if(domains.begin(), domains.end(), [](const auto pair) {
+        return pair.second == 1;
+    }) << endl;
+    cout << "Numery telefonow z ostatnia cyfra parzysta: " << phoneNumbersWithEvenLastDigit << endl;
+    cout << "Nazwiska laczone: " << combinedLastNames << endl;
+    cout << "Ilosc danego imienia:" << endl;
+    for (const auto &pair: names)
+        cout << pair.first << ": " << pair.second << endl;
+
+    file.close();
 }
 
 void task_4() {
@@ -28,17 +89,21 @@ void task_4() {
     cout << CardIndexValidator::validatePhoneNumber("456489465") << endl;
     cout << CardIndexValidator::validateEmail("michael@jackson.com") << endl;
 
-    string firstName, lastName, age, phoneNumber, email;
-    cout << "Podaj imie:" << endl;
-    cin >> firstName;
-    cout << "Podaj nazwisko:" << endl;
-    cin >> lastName;
-    cout << "Podaj wiek:" << endl;
-    cin >> age;
-    cout << "Podaj numer telefonu:" << endl;
-    cin >> phoneNumber;
-    cout << "Podaj email:" << endl;
-    cin >> email;
+    string firstName = "Michael";
+    string lastName = "Jackson-Jackson";
+    string age = "50";
+    string phoneNumber = "456489465";
+    string email = "michael@jackson.com";
+//    cout << "Podaj imie:" << endl;
+//    cin >> firstName;
+//    cout << "Podaj nazwisko:" << endl;
+//    cin >> lastName;
+//    cout << "Podaj wiek:" << endl;
+//    cin >> age;
+//    cout << "Podaj numer telefonu:" << endl;
+//    cin >> phoneNumber;
+//    cout << "Podaj email:" << endl;
+//    cin >> email;
 
     bool correct = true;
 
@@ -60,7 +125,7 @@ void task_4() {
 
     cout << "Zapisano do pliku" << endl;
     ofstream file;
-    file.open("../lab_10/task_4/users.csv", std::ios_base::app);
+    file.open("../lab_10/users.csv", std::ios_base::app);
     file << firstName << ';' << lastName << ';' << age << ';' << phoneNumber << ';' << email << endl;
     file.close();
 }
