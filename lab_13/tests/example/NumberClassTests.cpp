@@ -42,4 +42,7 @@ TEST_P(NumberParamTest, NTests) {
 
 INSTANTIATE_TEST_CASE_P
 
-(Default, NumberParamTest, Values(NumberState{4, 5}, NumberState{3, 4}));
+(Default, NumberParamTest, Values(
+        NumberState{4, 5},
+        NumberState{3, 4}
+));
