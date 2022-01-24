@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.20)
-project(sem5-advanced-cpp)
+project(sem5-cpp)
 
 set(CMAKE_CXX_STANDARD 23)
 
@@ -24,3 +24,4 @@ add_executable(lab_09 lab_9/main.cpp lab_9/task_3/StudentRecord.cpp lab_9/task_3
 add_executable(lab_10 lab_10/main.cpp lab_10/task_3/AddressValidator.cpp lab_10/task_3/AddressValidator.h lab_10/task_4/CardIndexValidator.cpp lab_10/task_4/CardIndexValidator.h lab_10/task_5/User.cpp lab_10/task_5/User.h)
 add_executable(lab_11 lab_11/main.cpp lab_11/task_1/Buffer.cpp lab_11/task_1/Buffer.h lab_11/task_1/BufferArr.cpp lab_11/task_1/BufferArr.h lab_11/task_1/BufferFile.cpp lab_11/task_1/BufferFile.h lab_11/task_2/Warehouse.cpp lab_11/task_2/Warehouse.h lab_11/task_2/Shop.cpp lab_11/task_2/Shop.h lab_11/task_3/BidirectionalList.h)
 add_executable(kolokwium_2_mk kolokwium_2/mk/main.cpp kolokwium_2/mk/Animal.h)
+add_executable(kolokwium_2_mb kolokwium_2/mb/main.cpp)
