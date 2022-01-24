@@ -1,6 +1,6 @@
 #include "BufferFile.h"
 
-BufferFile::BufferFile(std::string filePath) : filePath_(std::move(filePath)), file_(std::make_shared<std::fstream>()) {
+BufferFile::BufferFile(std::string filePath) : filePath_(std::move(filePath)), file_(std::make_unique<std::fstream>()) {
     std::cout << "BufferFile constructor" << std::endl;
     file_->open(filePath_, std::fstream::out);
     file_->close();

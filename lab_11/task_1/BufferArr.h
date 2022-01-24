@@ -5,7 +5,7 @@
 
 class BufferArr : public Buffer {
 private:
-    std::shared_ptr<int[]> tab_;
+    std::unique_ptr<int[]> tab_;
     int size_;
     int capacity_;
 public:

@@ -8,7 +8,7 @@
 class BufferFile : public Buffer {
 private:
     std::string filePath_;
-    std::shared_ptr<std::fstream> file_;
+    std::unique_ptr<std::fstream> file_;
 public:
     explicit BufferFile(std::string filePath);
 
