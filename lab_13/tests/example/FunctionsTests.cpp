@@ -1,5 +1,5 @@
-#include "gtest/gtest.h"
-#include "gmock/gmock-matchers.h"
+#include <gtest/gtest.h>
+#include <gmock/gmock-matchers.h>
 #include "../../example/functions.h"
 
 using namespace testing;
