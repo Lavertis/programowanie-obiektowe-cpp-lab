@@ -1,0 +1,9 @@
+Zad 1.
+Wczytać plik z danymi zwierząt do vectora (wiek zwierzęcia ma być liczbą całkowitą).
+Następnie dodać do nowego pliku dane zwierząt, które w nazwie mają zaki spacji.
+
+Zad 2.
+Sprawdzić poprawność daty YYYY-MM. Rok musi być w przedziale 1900-2022. Data jest stringiem.
+
+Zad 3.
+Zrobić własną klasę wyjątków i zastosować wyjątek dla funkcji n! gdzie n < 0.

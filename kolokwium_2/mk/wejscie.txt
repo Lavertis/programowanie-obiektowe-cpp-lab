@@ -1,0 +1,7 @@
+nazwa zwierzecia;liczba lat
+owczarek niemiecki;5
+kot;7
+niedzwiedz brunatny;4
+afrojez bialobrzuchy bialy;7
+mysz;2
+ryba;10

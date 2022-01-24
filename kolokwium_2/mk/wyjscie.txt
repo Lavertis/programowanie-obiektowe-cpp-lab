@@ -1,0 +1,4 @@
+nazwa zwierzecia;liczba lat
+owczarek niemiecki;5
+niedzwiedz brunatny;4
+afrojez bialobrzuchy bialy;7
